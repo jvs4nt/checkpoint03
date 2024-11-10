@@ -1,8 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<CP3.MVC.Application.Dtos.BarcoDto>
+
+@{
+    ViewData["Title"] = "Barcos";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+        <th>@Html.DisplayNameFor(model => model.Modelo)</th>
+        <th>@Html.DisplayNameFor(model => model.Ano)</th>
+        <th>@Html.DisplayNameFor(model => model.Tamanho)</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var barco in Model)
+    {
+        <tr>
+            <td>@barco.Nome</td>
+            <td>@barco.Modelo</td>
+            <td>@barco.Ano</td>
+            <td>@barco.Tamanho</td>
+            <td>
+                <a href="@Url.Action("Details", "Barco", new { id = barco.Id })">Detalhes</a> |
+                <a href="@Url.Action("Edit", "Barco", new { id = barco.Id })">Editar</a> |
+                <a href="@Url.Action("Delete", "Barco", new { id = barco.Id })">Excluir</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<p>
+    <a href="@Url.Action("Create", "Barco")" class="btn btn-primary">Adicionar Barco</a>
+</p>
