@@ -1,0 +1,20 @@
+@model CP3.MVC.Application.Dtos.BarcoDto
+
+@{
+    ViewData["Title"] = "Excluir Barco";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Você tem certeza que deseja excluir o barco "@Model.Nome"?</h4>
+    <p><strong>Modelo:</strong> @Model.Modelo</p>
+    <p><strong>Ano:</strong> @Model.Ano</p>
+    <p><strong>Tamanho:</strong> @Model.Tamanho</p>
+</div>
+
+<form asp-action="DeleteForm" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="@Url.Action("Index", "Barco")" class="btn btn-secondary">Cancelar</a>
+</form>
